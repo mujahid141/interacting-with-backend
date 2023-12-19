@@ -1,3 +1,7 @@
+let cart = document.getElementById("cart");
+let cartArea = document.querySelector(".cartArea");
+let cartClose = document.querySelector(".closed");
+const addcart = document.querySelectorAll(".add-cart");
 let apiendPoint = "http://fakestoreapi.com/products";
 const products = document.querySelector(".container"); // Use a class selector here
 const input = document.querySelector(".input");
@@ -47,14 +51,30 @@ const displayProducts = async (category) => {
         <img src="${object.image}" alt="Denim Jeans" >
         <h5>${object.title}</h5>
         <p class="price">${object.price}$</p>
-        <p><button class='add-cart'>Add to Cart</button></p>
+        <p><button class='add-cart' >Add to Cart</button></p>
         </div>
     `;
     });
 
   products.innerHTML = tableData; // Join the array of template literals into a single string
 };
+const addtocart = document.querySelectorAll(".add-cart");
+Array.from(addtocart).map((e) => {
+  console.log(e);
+  e.addEventListener("click ", () => {
+    console.log(e);
+  });
+});
 displayProducts();
 input.addEventListener("input", () => {
   displayProducts();
 });
+
+cart.onclick = (event) => {
+  event.preventDefault();
+  cartArea.classList.add("active");
+};
+cartClose.onclick = (event) => {
+  event.preventDefault();
+  cartArea.classList.remove("active");
+};
